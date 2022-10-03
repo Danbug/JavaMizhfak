@@ -10,11 +10,18 @@ import org.pupa.characters.Warrior;
 public class App 
 {
     public static void main( String[] args ) {
-        Warrior carl = new Knight();
-        System.out.println(carl.getAttack());
+        var army1 = new Army()
+                .addUnits(()  -> new Warrior(),5)
+                .addUnits(Knight::new, 3);
+
+
+        // fluent interface
+        var army = new Army()
+                .addUnits(new Warrior())
+                .addUnits(new Warrior())
+                .addUnits(new Knight())
+                .addUnits(new Warrior());
+
     }
 
-    public static int addTwoIntegers(int a, int b){
-        return a + b;
-    }
 }

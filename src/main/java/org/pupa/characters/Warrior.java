@@ -18,14 +18,28 @@ public class Warrior {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        if(health < 0){
+            this.health = 0;
+        } else {
+            this.health = health;
+        }
     }
 
 
+    // two methods = Pattern commands
+    // main thing about design = low coupling
+
     /**
-     * @param warrior Enemy warrior that deals damage to this warrior
+     * @param opponent Enemy warrior that we should attack
      */
-    public void receiveDamage(Warrior warrior){
-        this.setHealth(this.getHealth() - warrior.getAttack());
+    public void hit(Warrior opponent){
+        opponent.receiveDamage(this.getAttack());
+    }
+
+    /**
+     * @param damage Amount of damage that will be dealt
+     */
+    protected void receiveDamage(int damage){
+        this.setHealth(this.getHealth() - damage);
     }
 }

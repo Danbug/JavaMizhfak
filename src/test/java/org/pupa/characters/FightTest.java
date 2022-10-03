@@ -9,8 +9,24 @@ import org.pupa.Battle;
 /**
  * Unit test for simple App.
  */
-class Fight
-{
+class Fight {
+
+    @Test
+    @DisplayName("Smoke test for Warrior and Knight task")
+    void smokeTest1() {
+        var chuck = new Warrior();
+        var bruce = new Warrior();
+        var carl = new Knight();
+        var dave = new Warrior();
+
+        assertTrue(Battle.fight(chuck, bruce));
+        assertFalse(Battle.fight(dave, carl));
+        assertTrue(chuck.isAlive());
+        assertFalse(bruce.isAlive());
+        assertTrue(carl.isAlive());
+        assertFalse(dave.isAlive());
+    }
+
     @Test
     @DisplayName("1. Fight")
     public void fight() {
