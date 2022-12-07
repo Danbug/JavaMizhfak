@@ -1,39 +1,27 @@
 package org.pupa;
 
+import org.pupa.army.Army;
 import org.pupa.characters.Warrior;
 
-// only static methods classes can be named utility class
 public class Battle {
-
-    // attack or receive damage?
     public static boolean fight(Warrior warrior1, Warrior warrior2){
         while(warrior1.isAlive() && warrior2.isAlive()){
-            warrior1.hit(warrior2);
+            warrior1.dealDamage(warrior2);
             if(warrior2.isAlive()){
-                warrior2.hit(warrior1);
+                warrior2.dealDamage(warrior1);
             }
         }
         return warrior1.isAlive();
     }
 
     public static boolean fight(Army army1, Army army2){
-        while(army1.peekFirst() != null && army2.peekFirst() != null){
-            if(fight(army1.peekFirst(), army2.peekFirst()) == true){
-                army2.removeFirst(); // first won
-            } else {
-                army1.removeFirst(); // second won
-            }
+        while (!army1.isArmyEmpty() && !army2.isArmyEmpty()) {
+            boolean fightResult = fight(army1.getArmy().peek(), army2.getArmy().peek());
+            if (fightResult)
+                army2.getArmy().remove();
+            else
+                army1.getArmy().remove();
         }
-        return army1.peekFirst() != null; // if first is null, then second army won
+        return !army1.isArmyEmpty();
     }
-
-/*    public static boolean fight(Warrior warrior1, Warrior warrior2){
-        while(warrior1.isAlive() && warrior2.isAlive()){
-            warrior2.setHealth(warrior2.getHealth() - warrior1.getAttack());
-            if(warrior2.isAlive()){
-                warrior1.setHealth(warrior1.getHealth() - warrior2.getAttack());
-            }
-        }
-        return warrior1.isAlive();
-    }*/
 }

@@ -7,21 +7,12 @@ import org.pupa.characters.Warrior;
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
     public static void main( String[] args ) {
-        var army1 = new Army()
-                .addUnits(()  -> new Warrior(),5)
-                .addUnits(Knight::new, 3);
-
-
-        // fluent interface
-        var army = new Army()
-                .addUnits(new Warrior())
-                .addUnits(new Warrior())
-                .addUnits(new Knight())
-                .addUnits(new Warrior());
 
     }
 
+    public static int addTwoIntegers(int a, int b){
+        return a + b;
+    }
 }
